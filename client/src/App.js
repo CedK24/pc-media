@@ -21,6 +21,7 @@ import TermsOfService from './pages/TermsOfService';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiePolicy from './pages/CookiePolicy';
 import SalesConditions from './pages/SalesConditions';
+import PCBureauMultimedia from './pages/PCBureauMultimedia';
 
 const themes = {
   modern: modernTheme,
@@ -89,6 +90,7 @@ function App() {
               <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
               <Route path="/politique-cookies" element={<CookiePolicy />} />
               <Route path="/conditions-vente" element={<SalesConditions />} />
+              <Route path="/pc-bureau-multimedia" element={<PCBureauMultimedia />} />
             </Routes>
           </Layout>
         </div>

@@ -51,101 +51,102 @@ const PCBureauMultimedia = () => {
   ];
 
   return (
-    <Box sx={{ py: { xs: 6, md: 12 } }}>
-      <Container maxWidth="lg">
-        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
-          <Typography
-            component="h1"
-            variant="h2"
-            gutterBottom
-            sx={{
-              fontWeight: 700,
-              background: 'linear-gradient(45deg, #2196f3 30%, #21CBF3 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-            }}
-          >
-            PC Bureau & Multimédia
-          </Typography>
-          <Typography
-            variant="h5"
-            color="text.secondary"
-            sx={{ maxWidth: 800, mx: 'auto', mb: 2 }}
-          >
-            Des solutions personnalisées pour votre environnement informatique et multimédia
-          </Typography>
-        </Box>
+    <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Typography
+        component="h1"
+        variant="h2"
+        align="center"
+        color="text.primary"
+        gutterBottom
+        sx={{ mb: 6 }}
+      >
+        PC Bureau & Multimédia
+      </Typography>
 
-        <Grid container spacing={4}>
-          {sections.map((section, index) => {
-            const Icon = section.icon;
-            return (
-              <Grid item xs={12} md={4} key={section.title}>
-                <MotionPaper
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+      <Grid container spacing={4}>
+        {sections.map((section, index) => {
+          const Icon = section.icon;
+          return (
+            <Grid item xs={12} md={4} key={section.title}>
+              <MotionPaper
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                sx={{
+                  height: '100%',
+                  p: 4,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  bgcolor: 'background.paper',
+                  borderRadius: 2,
+                  boxShadow: theme.shadows[3],
+                  '&:hover': {
+                    boxShadow: theme.shadows[6],
+                    transform: 'translateY(-4px)',
+                    transition: 'all 0.3s ease-in-out',
+                  },
+                }}
+              >
+                <Box
                   sx={{
-                    p: 3,
-                    height: '100%',
                     display: 'flex',
-                    flexDirection: 'column',
-                    transition: 'transform 0.3s, box-shadow 0.3s',
-                    '&:hover': {
-                      transform: 'translateY(-8px)',
-                      boxShadow: theme.shadows[10],
-                    },
+                    justifyContent: 'center',
+                    mb: 3,
                   }}
                 >
-                  <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                    <Icon sx={{ fontSize: 40, color: 'primary.main', mr: 2 }} />
-                    <Typography variant="h5" component="h2" gutterBottom>
-                      {section.title}
-                    </Typography>
-                  </Box>
-                  <Typography color="text.secondary" paragraph>
-                    {section.description}
-                  </Typography>
-                  <Box sx={{ mt: 2 }}>
-                    {section.features.map((feature, i) => (
-                      <Typography
-                        key={i}
-                        component="div"
-                        sx={{
-                          py: 0.5,
-                          display: 'flex',
-                          alignItems: 'center',
-                          '&:before': {
-                            content: '"•"',
-                            color: 'primary.main',
-                            mr: 1,
-                          },
-                        }}
-                      >
-                        {feature}
-                      </Typography>
-                    ))}
-                  </Box>
-                  <Box sx={{ mt: 'auto', pt: 2 }}>
-                    <Button
-                      variant="contained"
-                      fullWidth
-                      href="/contact"
+                  <Icon sx={{ fontSize: 48, color: 'primary.main' }} />
+                </Box>
+                <Typography variant="h5" component="h2" align="center" gutterBottom>
+                  {section.title}
+                </Typography>
+                <Typography color="text.secondary" paragraph align="center">
+                  {section.description}
+                </Typography>
+                <Box sx={{ mt: 2 }}>
+                  {section.features.map((feature, featureIndex) => (
+                    <Typography
+                      key={featureIndex}
+                      component="div"
                       sx={{
-                        mt: 2,
-                        background: 'linear-gradient(45deg, #2196f3 30%, #21CBF3 90%)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        mb: 1,
+                        '&:before': {
+                          content: '""',
+                          width: 6,
+                          height: 6,
+                          borderRadius: '50%',
+                          bgcolor: 'primary.main',
+                          mr: 2,
+                        },
                       }}
                     >
-                      Nous Contacter
-                    </Button>
-                  </Box>
-                </MotionPaper>
-              </Grid>
-            );
-          })}
-        </Grid>
-      </Container>
-    </Box>
+                      {feature}
+                    </Typography>
+                  ))}
+                </Box>
+                <Box sx={{ mt: 'auto', pt: 2 }}>
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    sx={{
+                      mt: 2,
+                      bgcolor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '&:hover': {
+                        bgcolor: 'primary.dark',
+                      },
+                    }}
+                  >
+                    En savoir plus
+                  </Button>
+                </Box>
+              </MotionPaper>
+            </Grid>
+          );
+        })}
+      </Grid>
+    </Container>
   );
 };
 
