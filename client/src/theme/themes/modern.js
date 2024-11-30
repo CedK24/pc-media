@@ -14,7 +14,7 @@ const modernTheme = createTheme({
       dark: '#4338ca',
     },
     background: {
-      default: '#f8fafc',
+      default: 'transparent',
       paper: '#ffffff',
     },
     text: {
@@ -58,6 +58,15 @@ const modernTheme = createTheme({
     borderRadius: 12,
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          background: 'linear-gradient(90deg, #00c3ff 0%, #ffff1c 100%)',
+          backgroundAttachment: 'fixed',
+          minHeight: '100vh',
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
