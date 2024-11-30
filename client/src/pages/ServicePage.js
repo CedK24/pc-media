@@ -12,6 +12,7 @@ import {
   Paper,
   Grid,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -20,6 +21,7 @@ import { services } from '../data/services';
 const ServicePage = () => {
   const { id } = useParams();
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const service = services.find(s => s.id === id);
 
   if (!service) {
@@ -56,7 +58,7 @@ const ServicePage = () => {
   const ServiceIcon = service.icon;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 6 }}>
+    <Container maxWidth="lg" sx={{ py: { xs: 3, md: 6 }, px: { xs: 2, sm: 3, md: 4 } }}>
       <Button
         component={Link}
         to="/services"
@@ -93,94 +95,96 @@ const ServicePage = () => {
               flexWrap: 'wrap'
             }}>
               <ServiceIcon sx={{ 
-                fontSize: 48,
+                fontSize: { xs: 40, md: 48 },
                 color: theme.palette.mode === 'dark'
                   ? theme.palette.primary.main
                   : theme.palette.primary.dark
               }} />
               <Typography 
-                variant="h3" 
+                variant={isMobile ? "h4" : "h3"}
                 component="h1"
                 sx={{
                   fontWeight: 700,
                   background: theme.palette.mode === 'dark'
-                    ? `linear-gradient(45deg, ${theme.palette.primary.main} 30%, ${theme.palette.secondary.main} 90%)`
-                    : `linear-gradient(45deg, ${theme.palette.primary.dark} 30%, ${theme.palette.secondary.dark} 90%)`,
+                    ? 'linear-gradient(135deg, #f43f5e 0%, #ec4899 90%)'
+                    : 'linear-gradient(135deg, #2563eb 0%, #3b82f6 90%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
-                  textShadow: theme.palette.mode === 'dark' ? '0 0 30px rgba(244, 63, 94, 0.3)' : 'none',
                 }}
               >
                 {service.title}
               </Typography>
             </Box>
+
             <Typography 
               variant="h6" 
-              color="text.secondary" 
-              paragraph
               sx={{ 
-                fontSize: '1.25rem',
-                lineHeight: 1.6
+                mb: 3,
+                color: 'text.secondary',
+                fontSize: { xs: '1rem', md: '1.25rem' }
               }}
             >
               {service.description}
             </Typography>
+
+            <Typography 
+              variant="body1" 
+              paragraph 
+              sx={{ 
+                color: 'text.primary',
+                fontSize: { xs: '0.9rem', md: '1rem' },
+                lineHeight: 1.8
+              }}
+            >
+              {service.longDescription}
+            </Typography>
           </Box>
 
           <Paper 
-            elevation={theme.palette.mode === 'dark' ? 8 : 2}
+            elevation={3} 
             sx={{ 
-              p: 4, 
-              mb: 4,
+              p: { xs: 2, md: 4 },
               background: theme.palette.mode === 'dark'
-                ? 'linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(9, 9, 11, 0.9) 100%)'
-                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%)',
-              backdropFilter: 'blur(10px)',
-              border: `1px solid ${theme.palette.mode === 'dark'
-                ? 'rgba(244, 63, 94, 0.2)'
-                : 'rgba(37, 99, 235, 0.2)'}`,
+                ? 'rgba(255, 255, 255, 0.05)'
+                : 'rgba(255, 255, 255, 0.9)',
+              backdropFilter: 'blur(10px)'
             }}
           >
             <Typography 
               variant="h5" 
               gutterBottom
-              sx={{
+              sx={{ 
                 fontWeight: 600,
-                color: theme.palette.mode === 'dark'
-                  ? theme.palette.primary.light
-                  : theme.palette.primary.dark,
+                mb: 3,
+                fontSize: { xs: '1.25rem', md: '1.5rem' }
               }}
             >
-              Ce que nous proposons
+              Ce service comprend :
             </Typography>
             <List>
-              {service.details.map((detail, index) => (
+              {service.features.map((feature, index) => (
                 <ListItem 
                   key={index}
-                  sx={{
-                    transition: 'all 0.2s ease-in-out',
-                    '&:hover': {
-                      transform: 'translateX(8px)',
-                      background: theme.palette.mode === 'dark'
-                        ? 'rgba(244, 63, 94, 0.1)'
-                        : 'rgba(37, 99, 235, 0.1)',
-                    }
+                  sx={{ 
+                    py: { xs: 1, md: 1.5 },
+                    px: { xs: 1, md: 2 }
                   }}
                 >
                   <ListItemIcon>
                     <CheckCircleIcon 
                       sx={{ 
-                        color: theme.palette.mode === 'dark'
+                        color: theme.palette.mode === 'dark' 
                           ? theme.palette.primary.main
-                          : theme.palette.primary.dark
+                          : theme.palette.primary.dark,
+                        fontSize: { xs: 20, md: 24 }
                       }} 
                     />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={detail}
+                    primary={feature}
                     primaryTypographyProps={{
-                      sx: {
-                        fontSize: '1.1rem',
+                      sx: { 
+                        fontSize: { xs: '0.9rem', md: '1rem' },
                         fontWeight: 500
                       }
                     }}
@@ -189,100 +193,83 @@ const ServicePage = () => {
               ))}
             </List>
           </Paper>
-
-          {service.additionalInfo && (
-            <Paper 
-              elevation={theme.palette.mode === 'dark' ? 8 : 2}
-              sx={{ 
-                p: 4,
-                background: theme.palette.mode === 'dark'
-                  ? 'linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(9, 9, 11, 0.9) 100%)'
-                  : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%)',
-                backdropFilter: 'blur(10px)',
-                border: `1px solid ${theme.palette.mode === 'dark'
-                  ? 'rgba(244, 63, 94, 0.2)'
-                  : 'rgba(37, 99, 235, 0.2)'}`,
-              }}
-            >
-              <Typography 
-                variant="h5" 
-                gutterBottom
-                sx={{
-                  fontWeight: 600,
-                  color: theme.palette.mode === 'dark'
-                    ? theme.palette.primary.light
-                    : theme.palette.primary.dark,
-                }}
-              >
-                Informations complémentaires
-              </Typography>
-              <Typography 
-                sx={{ 
-                  fontSize: '1.1rem',
-                  lineHeight: 1.6
-                }}
-              >
-                {service.additionalInfo}
-              </Typography>
-            </Paper>
-          )}
         </Grid>
 
         <Grid item xs={12} md={4}>
           <Paper 
-            elevation={theme.palette.mode === 'dark' ? 8 : 2}
-            sx={{ 
-              p: 4,
+            elevation={3}
+            sx={{
+              p: { xs: 2, md: 4 },
               background: theme.palette.mode === 'dark'
-                ? 'linear-gradient(135deg, rgba(24, 24, 27, 0.8) 0%, rgba(9, 9, 11, 0.9) 100%)'
-                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.9) 100%)',
+                ? 'linear-gradient(135deg, rgba(244, 63, 94, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)'
+                : 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%)',
               backdropFilter: 'blur(10px)',
-              border: `1px solid ${theme.palette.mode === 'dark'
-                ? 'rgba(244, 63, 94, 0.2)'
-                : 'rgba(37, 99, 235, 0.2)'}`,
+              border: `1px solid ${
+                theme.palette.mode === 'dark'
+                  ? 'rgba(244, 63, 94, 0.2)'
+                  : 'rgba(37, 99, 235, 0.2)'
+              }`,
+              position: 'sticky',
+              top: 100
             }}
           >
             <Typography 
               variant="h5" 
               gutterBottom
-              sx={{
+              sx={{ 
                 fontWeight: 600,
-                color: theme.palette.mode === 'dark'
-                  ? theme.palette.primary.light
-                  : theme.palette.primary.dark,
+                mb: 3,
+                fontSize: { xs: '1.25rem', md: '1.5rem' }
               }}
             >
-              Besoin d'assistance ?
+              Intéressé par ce service ?
             </Typography>
-            <Typography paragraph sx={{ fontSize: '1.1rem' }}>
-              Contactez-nous pour obtenir un devis personnalisé ou pour toute question concernant nos services.
+            <Typography 
+              variant="body1" 
+              paragraph
+              sx={{ 
+                color: 'text.secondary',
+                fontSize: { xs: '0.9rem', md: '1rem' }
+              }}
+            >
+              Prenez rendez-vous dès maintenant pour discuter de votre projet ou obtenir un devis personnalisé.
             </Typography>
-            <Button
-              component={Link}
-              to="/contact"
-              variant="contained"
-              fullWidth
-              sx={{
-                py: 1.5,
-                background: theme.palette.mode === 'dark'
-                  ? 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)'
-                  : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                boxShadow: theme.palette.mode === 'dark'
-                  ? '0 4px 16px rgba(244, 63, 94, 0.3)'
-                  : '0 4px 16px rgba(37, 99, 235, 0.3)',
-                '&:hover': {
+            <Box sx={{ display: 'flex', gap: 2, flexDirection: { xs: 'column', sm: 'row', md: 'column' } }}>
+              <Button
+                variant="contained"
+                component={Link}
+                to="/rendez-vous"
+                fullWidth
+                sx={{
+                  py: 1.5,
                   background: theme.palette.mode === 'dark'
-                    ? 'linear-gradient(135deg, #e11d48 0%, #be123c 100%)'
-                    : 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
-                  boxShadow: theme.palette.mode === 'dark'
-                    ? '0 6px 20px rgba(244, 63, 94, 0.4)'
-                    : '0 6px 20px rgba(37, 99, 235, 0.4)',
-                  transform: 'translateY(-2px)',
-                }
-              }}
-            >
-              Nous contacter
-            </Button>
+                    ? 'linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)'
+                    : 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  '&:hover': {
+                    background: theme.palette.mode === 'dark'
+                      ? 'linear-gradient(135deg, #e11d48 0%, #be123c 100%)'
+                      : 'linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%)',
+                  }
+                }}
+              >
+                Prendre rendez-vous
+              </Button>
+              <Button
+                variant="outlined"
+                component={Link}
+                to="/contact"
+                fullWidth
+                sx={{
+                  py: 1.5,
+                  borderWidth: '2px',
+                  '&:hover': {
+                    borderWidth: '2px'
+                  }
+                }}
+              >
+                Nous contacter
+              </Button>
+            </Box>
           </Paper>
         </Grid>
       </Grid>

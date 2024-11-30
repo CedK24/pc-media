@@ -11,10 +11,10 @@ const services = [
   {
     id: 'reparation',
     title: 'Réparation PC & Mac',
-    shortDescription: 'Diagnostic et réparation de vos ordinateurs, portables et fixes',
     description: 'Service complet de réparation pour tous types d\'ordinateurs. Nos techniciens expérimentés diagnostiquent et réparent rapidement vos appareils.',
+    longDescription: 'Nous proposons un service complet de réparation informatique pour tous types d\'ordinateurs, qu\'il s\'agisse de PC ou de Mac. Nos techniciens expérimentés sont formés pour diagnostiquer et réparer rapidement vos appareils, en utilisant des pièces de qualité et des outils professionnels. Nous intervenons sur tous types de pannes matérielles et logicielles.',
     icon: ComputerIcon,
-    details: [
+    features: [
       'Diagnostic complet de votre matériel',
       'Réparation de composants défectueux',
       'Remplacement de pièces',
@@ -23,15 +23,15 @@ const services = [
       'Mise à niveau matérielle',
       'Dépannage logiciel'
     ],
-    additionalInfo: 'Nous intervenons sur tous types de pannes : écran, clavier, batterie, disque dur, carte mère, etc. Nos réparations sont garanties et nous n\'utilisons que des pièces de qualité.'
+    highlight: true
   },
   {
     id: 'maintenance',
     title: 'Maintenance Préventive',
-    shortDescription: 'Entretien préventif et optimisation de vos systèmes',
     description: 'Un entretien régulier de votre matériel informatique permet d\'éviter les pannes et d\'optimiser les performances.',
+    longDescription: 'La maintenance préventive est essentielle pour garantir la longévité et les performances optimales de votre équipement informatique. Notre service comprend un ensemble complet d\'interventions régulières qui permettent de prévenir les pannes et d\'assurer un fonctionnement optimal de vos systèmes.',
     icon: BuildIcon,
-    details: [
+    features: [
       'Nettoyage physique complet',
       'Mise à jour des systèmes',
       'Optimisation des performances',
@@ -39,127 +39,103 @@ const services = [
       'Sauvegarde des données',
       'Défragmentation des disques',
       'Rapport de maintenance détaillé'
-    ],
-    additionalInfo: 'Notre service de maintenance préventive permet de prolonger la durée de vie de vos équipements et d\'éviter les pannes coûteuses.'
+    ]
   },
   {
     id: 'securite',
     title: 'Sécurité Informatique',
-    shortDescription: 'Protection contre les virus et menaces informatiques',
     description: 'Protégez vos données et systèmes contre les menaces informatiques avec nos solutions de sécurité complètes.',
+    longDescription: 'Dans un monde numérique en constante évolution, la sécurité informatique est devenue une priorité absolue. Nous proposons des solutions complètes pour protéger vos systèmes et vos données contre les menaces actuelles et émergentes, en utilisant les technologies les plus avancées.',
     icon: SecurityIcon,
-    details: [
-      'Installation d\'antivirus professionnel',
-      'Configuration du pare-feu',
-      'Protection contre les ransomwares',
-      'Sécurisation du réseau',
+    features: [
+      'Analyse et suppression des virus',
+      'Installation d\'antivirus',
+      'Configuration pare-feu',
+      'Protection des données',
+      'Sécurisation des réseaux',
       'Audit de sécurité',
-      'Formation aux bonnes pratiques',
-      'Surveillance continue'
-    ],
-    additionalInfo: 'La sécurité informatique est cruciale aujourd\'hui. Nous vous proposons des solutions adaptées à vos besoins et à votre budget.'
+      'Formation aux bonnes pratiques'
+    ]
   },
   {
-    id: 'reseaux',
-    title: 'Solutions Réseau',
-    shortDescription: 'Installation et configuration de réseaux professionnels',
-    description: 'Conception, installation et maintenance de réseaux informatiques pour professionnels et particuliers.',
+    id: 'reseau',
+    title: 'Installation Réseau',
+    description: 'Configuration et optimisation de votre réseau informatique pour une connectivité optimale.',
+    longDescription: 'Un réseau bien configuré est essentiel pour assurer une connectivité fiable et performante. Nous concevons et installons des solutions réseau adaptées à vos besoins, qu\'il s\'agisse d\'un réseau domestique ou professionnel, en privilégiant la sécurité et les performances.',
     icon: WifiIcon,
-    details: [
-      'Installation de réseaux WiFi',
-      'Configuration des routeurs',
-      'Mise en place de VPN',
-      'Partage de ressources',
-      'Optimisation réseau',
+    features: [
+      'Installation de routeurs et switches',
+      'Configuration du réseau WiFi',
       'Sécurisation des accès',
-      'Support technique continu'
-    ],
-    additionalInfo: 'Un réseau bien configuré est essentiel pour la productivité. Nous vous garantissons une installation professionnelle et performante.'
+      'Optimisation des performances',
+      'Partage de ressources',
+      'Support technique',
+      'Documentation complète'
+    ]
   },
   {
-    id: 'serveurs',
-    title: 'Serveurs & Infrastructure',
-    shortDescription: 'Gestion et maintenance de serveurs d\'entreprise',
-    description: 'Solutions serveur complètes pour les entreprises : installation, configuration et maintenance.',
+    id: 'stockage',
+    title: 'Solutions de Stockage',
+    description: 'Solutions de stockage et de sauvegarde adaptées à vos besoins.',
+    longDescription: 'Nous proposons des solutions de stockage sur mesure pour répondre à vos besoins spécifiques. Que vous ayez besoin d\'augmenter votre capacité de stockage ou de mettre en place un système de sauvegarde fiable, nous avons la solution qu\'il vous faut.',
     icon: StorageIcon,
-    details: [
-      'Installation de serveurs',
-      'Configuration Windows Server',
-      'Solutions de stockage',
-      'Sauvegarde automatisée',
-      'Virtualisation',
-      'Maintenance préventive',
-      'Support 6j/7'
-    ],
-    additionalInfo: 'Nos solutions serveur sont conçues pour être fiables, sécurisées et évolutives, adaptées à vos besoins actuels et futurs.'
+    features: [
+      'Installation de disques durs',
+      'Configuration RAID',
+      'Solutions de sauvegarde',
+      'Stockage en réseau (NAS)',
+      'Cloud Storage',
+      'Récupération de données',
+      'Conseil personnalisé'
+    ]
   },
   {
     id: 'cloud',
-    title: 'Solutions Cloud',
-    shortDescription: 'Migration et gestion de vos données dans le cloud',
-    description: 'Profitez des avantages du cloud computing avec nos solutions de migration et de gestion cloud.',
+    title: 'Services Cloud',
+    description: 'Migration et gestion de vos services dans le cloud pour plus de flexibilité.',
+    longDescription: 'Le cloud computing offre une flexibilité et une scalabilité inégalées. Nous vous accompagnons dans votre transition vers le cloud, de la planification à la migration, en passant par la formation de vos équipes et le support continu.',
     icon: CloudIcon,
-    details: [
+    features: [
       'Migration vers le cloud',
-      'Configuration Office 365',
-      'Google Workspace',
-      'Stockage cloud sécurisé',
-      'Synchronisation des données',
-      'Sauvegarde cloud',
-      'Formation utilisateurs'
-    ],
-    additionalInfo: 'Le cloud offre flexibilité et sécurité. Nous vous accompagnons dans votre transition vers le cloud en toute sérénité.'
+      'Configuration des services',
+      'Sécurisation des données',
+      'Optimisation des coûts',
+      'Formation utilisateur',
+      'Support technique',
+      'Monitoring continu'
+    ]
   },
   {
     id: 'performance',
     title: 'Optimisation Performance',
-    shortDescription: 'Amélioration des performances de vos systèmes',
     description: 'Maximisez les performances de vos équipements informatiques avec nos solutions d\'optimisation.',
+    longDescription: 'Nos experts analysent en profondeur votre système pour identifier les goulots d\'étranglement et optimiser chaque aspect de vos équipements. Nous utilisons des outils professionnels et des techniques éprouvées pour maximiser les performances.',
     icon: SpeedIcon,
-    details: [
+    features: [
       'Analyse des performances',
-      'Optimisation matérielle',
-      'Optimisation logicielle',
-      'Nettoyage système',
-      'Mise à niveau composants',
+      'Optimisation système',
+      'Mise à niveau matérielle',
+      'Configuration optimale',
       'Tests de performance',
-      'Recommandations personnalisées'
-    ],
-    additionalInfo: 'Un système optimisé est plus rapide et plus agréable à utiliser. Nous vous aidons à tirer le meilleur parti de votre matériel.'
+      'Rapport détaillé',
+      'Recommandations'
+    ]
   },
   {
-    id: 'multidevices',
-    title: 'Support Multi-Devices',
-    shortDescription: 'Support technique pour tous vos appareils',
-    description: 'Un support technique unifié pour tous vos appareils : ordinateurs, smartphones, tablettes et périphériques.',
+    id: 'conseil',
+    title: 'Conseil & Formation',
+    description: 'Accompagnement personnalisé et formation pour une utilisation optimale de vos outils.',
+    longDescription: 'Notre service de conseil et formation vous aide à tirer le meilleur parti de vos équipements informatiques. Nous proposons des formations personnalisées et un accompagnement sur mesure pour répondre à vos besoins spécifiques.',
     icon: DevicesIcon,
-    details: [
-      'Support PC et Mac',
-      'Support smartphones',
-      'Support tablettes',
-      'Configuration imprimantes',
-      'Synchronisation devices',
-      'Dépannage à distance',
-      'Conseil d\'achat'
-    ],
-    additionalInfo: 'Gérez tous vos appareils avec un seul interlocuteur. Notre équipe est formée sur toutes les plateformes.'
-  },
-  {
-    id: 'pc-bureau-multimedia',
-    title: 'PC Bureau & Multimédia',
-    shortDescription: 'Solutions personnalisées pour votre environnement informatique et multimédia',
-    description: 'Configuration, assemblage et installation de PC bureau sur mesure et solutions multimédia complètes.',
-    icon: DevicesIcon,
-    details: [
-      'Configuration PC sur mesure',
-      'Assemblage professionnel',
-      'Solutions multimédia',
-      'Home cinéma et audio',
-      'Installation et configuration',
-      'Support technique dédié',
-      'Optimisation des performances'
-    ],
-    additionalInfo: 'Nous vous accompagnons dans le choix et la mise en place de solutions informatiques et multimédia adaptées à vos besoins, avec un service clé en main.'
+    features: [
+      'Analyse des besoins',
+      'Formation personnalisée',
+      'Support utilisateur',
+      'Documentation détaillée',
+      'Suivi post-formation',
+      'Conseils d\'optimisation',
+      'Assistance continue'
+    ]
   }
 ];
 
