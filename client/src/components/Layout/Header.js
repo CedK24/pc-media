@@ -13,6 +13,8 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -26,6 +28,8 @@ import ThemeSwitcher from '../../theme/ThemeSwitcher';
 
 const Header = ({ onThemeChange, currentTheme }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -72,18 +76,20 @@ const Header = ({ onThemeChange, currentTheme }) => {
   );
 
   return (
-    <AppBar position="sticky" elevation={0} sx={{ bgcolor: 'background.paper' }}>
+    <AppBar position="sticky" elevation={1} sx={{ bgcolor: 'background.paper' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
+          {isMobile && (
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+              sx={{ mr: 2, color: 'primary.main' }}
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
 
           <Typography
             variant="h6"
@@ -97,13 +103,13 @@ const Header = ({ onThemeChange, currentTheme }) => {
               letterSpacing: '.3rem',
               color: 'primary.main',
               textDecoration: 'none',
-              flexGrow: { xs: 1, sm: 0 },
+              flexGrow: { xs: 1, md: 0 },
             }}
           >
             PC MEDIA
           </Typography>
 
-          <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1, gap: 2 }}>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, gap: 2 }}>
             {menuItems.map((item) => (
               <Button
                 key={item.text}
@@ -122,7 +128,7 @@ const Header = ({ onThemeChange, currentTheme }) => {
             ))}
           </Box>
 
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <ThemeSwitcher onThemeChange={onThemeChange} currentTheme={currentTheme} />
           </Box>
         </Toolbar>
@@ -137,8 +143,12 @@ const Header = ({ onThemeChange, currentTheme }) => {
           keepMounted: true,
         }}
         sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 250 },
+          display: { xs: 'block', md: 'none' },
+          '& .MuiDrawer-paper': { 
+            boxSizing: 'border-box', 
+            width: 250,
+            bgcolor: 'background.paper',
+          },
         }}
       >
         {drawer}
