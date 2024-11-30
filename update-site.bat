@@ -31,13 +31,28 @@ git push
 echo.
 
 echo ========================================
-echo     Mise a jour terminee !
+echo     Mise a jour en cours...
 echo ========================================
 echo.
-echo Vos modifications seront deployees automatiquement dans quelques minutes.
-echo Verifiez le statut sur :
-echo - Frontend : https://vercel.com/
-echo - Backend : https://dashboard.render.com/
+echo Le deploiement est en cours. Veuillez patienter...
+echo.
+echo Pour suivre le deploiement en temps reel :
+echo.
+echo Frontend (Vercel) :
+echo 1. Allez sur https://vercel.com/dashboard
+echo 2. Selectionnez votre projet
+echo 3. Cliquez sur "Deployments" pour voir le statut
+echo.
+echo Backend (Render) :
+echo 1. Allez sur https://dashboard.render.com/
+echo 2. Selectionnez votre service
+echo 3. Regardez la section "Deploy" pour le statut
+echo.
+echo Note: Le deploiement prend generalement :
+echo - Frontend : 1-2 minutes
+echo - Backend : 2-5 minutes
+echo.
+echo Une fois le deploiement termine, votre site sera automatiquement mis a jour.
 echo.
 echo Appuyez sur une touche pour fermer...
 pause >nul
