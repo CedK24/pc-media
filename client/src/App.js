@@ -17,6 +17,11 @@ import LegalNotice from './pages/LegalNotice';
 import PCBureauMultimedia from './pages/PCBureauMultimedia';
 import Configurateur from './pages/Configurateur';
 import ConfigurationDetail from './pages/ConfigurationDetail';
+import LegalMentions from './pages/LegalMentions';
+import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import SalesConditions from './pages/SalesConditions';
 
 const themes = {
   modern: modernTheme,
@@ -94,10 +99,15 @@ function App() {
               <Route path="/urgence" element={<Emergency />} />
               <Route path="/rendez-vous" element={<Appointment />} />
               <Route path="/faq" element={<FAQ />} />
-              <Route path="/mentions-legales" element={<LegalNotice />} />
+              <Route path="/legal" element={<LegalNotice />} />
               <Route path="/pc-bureau-multimedia" element={<PCBureauMultimedia />} />
               <Route path="/configurateur" element={<Configurateur />} />
               <Route path="/configuration/:id" element={<ConfigurationDetail />} />
+              <Route path="/mentions-legales" element={<LegalMentions />} />
+              <Route path="/conditions-utilisation" element={<TermsOfService />} />
+              <Route path="/politique-confidentialite" element={<PrivacyPolicy />} />
+              <Route path="/politique-cookies" element={<CookiePolicy />} />
+              <Route path="/conditions-vente" element={<SalesConditions />} />
             </Routes>
           </Layout>
         </div>

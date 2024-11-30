@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography, Paper, useTheme } from '@mui/material';
 
-const TermsOfService = () => {
+const CookiePolicy = () => {
   const theme = useTheme();
 
   return (
@@ -20,68 +20,73 @@ const TermsOfService = () => {
           WebkitTextFillColor: 'transparent',
         }}
       >
-        Conditions Générales d'Utilisation (CGU)
+        Politique des Cookies
       </Typography>
 
       <Paper elevation={3} sx={{ p: 4, mb: 4 }}>
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
-          1. Objet
+          1. Qu'est-ce qu'un cookie ?
         </Typography>
         <Typography paragraph>
-          Les présentes CGU régissent l'utilisation du site PC-Media et définissent les conditions d'accès 
-          et d'utilisation des services proposés sur le site.
+          Un cookie est un petit fichier texte déposé sur votre terminal (ordinateur, tablette, smartphone) 
+          lors de votre visite sur notre site. Il permet de stocker des informations relatives à votre 
+          navigation et de vous offrir une expérience personnalisée.
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          2. Accès au site
+          2. Les cookies que nous utilisons
         </Typography>
         <Typography paragraph>
-          L'accès au site est gratuit. L'utilisateur est responsable de son équipement informatique ainsi 
-          que de son accès à Internet. Les frais correspondants restent à sa charge.
+          Notre site utilise différents types de cookies :
+          <br />- Cookies essentiels : nécessaires au fonctionnement du site
+          <br />- Cookies analytiques : pour comprendre l'utilisation du site
+          <br />- Cookies de personnalisation : pour améliorer votre expérience
+          <br />- Cookies de performance : pour optimiser le site
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          3. Services proposés
+          3. Durée de conservation
         </Typography>
         <Typography paragraph>
-          PC-Media propose des services de configuration, montage et réparation d'ordinateurs. La description 
-          détaillée des services est disponible sur les pages correspondantes du site.
+          Les cookies peuvent être :
+          <br />- Temporaires (supprimés à la fermeture du navigateur)
+          <br />- Permanents (durée maximale de 13 mois)
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          4. Obligations de l'utilisateur
+          4. Gestion des cookies
         </Typography>
         <Typography paragraph>
-          L'utilisateur s'engage à :
-          <br />- Utiliser le site conformément à sa destination
-          <br />- Ne pas tenter de porter atteinte au bon fonctionnement du site
-          <br />- Respecter les droits de propriété intellectuelle
-          <br />- Fournir des informations exactes lors de l'utilisation des services
+          Vous pouvez à tout moment :
+          <br />- Accepter ou refuser les cookies
+          <br />- Modifier vos préférences
+          <br />- Supprimer les cookies existants
+          <br />
+          Pour cela, consultez les paramètres de votre navigateur.
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          5. Propriété intellectuelle
+          5. Impact du refus des cookies
         </Typography>
         <Typography paragraph>
-          Tous les éléments du site sont protégés par le droit de la propriété intellectuelle. Toute 
-          reproduction non autorisée constitue une contrefaçon sanctionnée par le Code de la propriété 
-          intellectuelle.
+          Le refus de certains cookies peut impacter votre expérience sur le site et limiter l'accès à 
+          certaines fonctionnalités.
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          6. Modification des CGU
+          6. Cookies tiers
         </Typography>
         <Typography paragraph>
-          PC-Media se réserve le droit de modifier les présentes CGU à tout moment. Les utilisateurs 
-          seront informés des modifications par une mention spéciale sur le site.
+          Notre site peut contenir des cookies déposés par des services tiers (Google Analytics, réseaux 
+          sociaux, etc.). Nous n'avons aucun contrôle sur ces cookies.
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
-          7. Droit applicable et juridiction compétente
+          7. Modifications
         </Typography>
         <Typography paragraph>
-          Les présentes CGU sont soumises au droit français. Tout litige relatif à l'interprétation ou 
-          l'exécution des présentes CGU relève de la compétence exclusive des tribunaux français.
+          PC-Media se réserve le droit de modifier cette politique des cookies à tout moment. Les 
+          modifications entrent en vigueur dès leur publication sur le site.
         </Typography>
       </Paper>
 
@@ -92,4 +97,4 @@ const TermsOfService = () => {
   );
 };
 
-export default TermsOfService;
+export default CookiePolicy;

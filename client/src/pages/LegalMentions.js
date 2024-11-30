@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Box, Paper, useTheme } from '@mui/material';
+import { Container, Typography, Paper, useTheme } from '@mui/material';
 
 const LegalMentions = () => {
   const theme = useTheme();

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography, Link } from '@mui/material';
+import { Link as RouterLink } from 'react-router-dom';
 import EmailIcon from '@mui/icons-material/Email';
 import PhoneIcon from '@mui/icons-material/Phone';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -28,7 +29,7 @@ const Footer = () => {
     >
       <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container spacing={4}>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <Typography variant="h6" gutterBottom sx={{ 
               fontWeight: 700,
               letterSpacing: '0.02em',
@@ -46,12 +47,8 @@ const Footer = () => {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom sx={{ 
-              fontWeight: 600,
-              letterSpacing: '0.02em',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
-            }}>
+          <Grid item xs={12} sm={3}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
               Horaires d'ouverture
             </Typography>
             <Typography variant="body2" sx={{ 
@@ -77,12 +74,8 @@ const Footer = () => {
             </Typography>
           </Grid>
 
-          <Grid item xs={12} sm={4}>
-            <Typography variant="h6" gutterBottom sx={{ 
-              fontWeight: 600,
-              letterSpacing: '0.02em',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
-            }}>
+          <Grid item xs={12} sm={3}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
               Contact
             </Typography>
             <Typography variant="body2" sx={{ 
@@ -102,6 +95,27 @@ const Footer = () => {
                 Rue des Pinsons, 24660 SANILHAC
               </Box>
             </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={3}>
+            <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+              Informations Légales
+            </Typography>
+            <Link component={RouterLink} to="/mentions-legales" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              Mentions Légales
+            </Link>
+            <Link component={RouterLink} to="/conditions-utilisation" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              CGU
+            </Link>
+            <Link component={RouterLink} to="/conditions-vente" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              CGV
+            </Link>
+            <Link component={RouterLink} to="/politique-confidentialite" color="inherit" sx={{ display: 'block', mb: 1, textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              Politique de Confidentialité
+            </Link>
+            <Link component={RouterLink} to="/politique-cookies" color="inherit" sx={{ display: 'block', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+              Politique des Cookies
+            </Link>
           </Grid>
         </Grid>
 
