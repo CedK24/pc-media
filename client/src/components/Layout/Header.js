@@ -91,23 +91,37 @@ const Header = ({ onThemeChange, currentTheme }) => {
             </IconButton>
           )}
 
-          <Typography
-            variant="h6"
-            noWrap
+          <Box
             component={Link}
             to="/"
+            aria-label="Retour à l'accueil"
             sx={{
               mr: 2,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'primary.main',
+              display: 'flex',
+              alignItems: 'center',
               textDecoration: 'none',
               flexGrow: { xs: 1, md: 0 },
+              transition: 'transform 0.2s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.05)',
+              },
             }}
           >
-            PC MEDIA
-          </Typography>
+            <Box
+              component="img"
+              src="/images/logo.png"
+              alt="PC Media Logo"
+              sx={{
+                height: { xs: '40px', md: '50px' },
+                width: 'auto',
+                display: 'block',
+                transition: 'filter 0.2s ease-in-out',
+                '&:hover': {
+                  filter: 'brightness(1.1)',
+                },
+              }}
+            />
+          </Box>
 
           <Box sx={{ display: { xs: 'none', md: 'flex' }, flexGrow: 1, gap: 2 }}>
             {menuItems.map((item) => (
@@ -148,6 +162,7 @@ const Header = ({ onThemeChange, currentTheme }) => {
             boxSizing: 'border-box', 
             width: 250,
             bgcolor: 'background.paper',
+            transition: 'transform 0.3s ease-in-out',
           },
         }}
       >
