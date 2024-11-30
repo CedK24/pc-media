@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import modernTheme from './theme/themes/modern';
 import darkTheme from './theme/themes/dark';
 import gamingTheme from './theme/themes/gaming';
+import gradientTheme from './theme/themes/gradient';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -27,6 +28,7 @@ const themes = {
   modern: modernTheme,
   dark: darkTheme,
   gaming: gamingTheme,
+  gradient: gradientTheme,
 };
 
 // Gestionnaire ResizeObserver
