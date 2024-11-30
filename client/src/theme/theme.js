@@ -1,4 +1,15 @@
 import { createTheme } from '@mui/material/styles';
+import modernTheme from './themes/modern';
+import darkTheme from './themes/dark';
+import gamingTheme from './themes/gaming';
+import gradientTheme from './themes/gradient';
+
+export const themes = {
+  modern: modernTheme,
+  dark: darkTheme,
+  gaming: gamingTheme,
+  gradient: gradientTheme,
+};
 
 const theme = createTheme({
   palette: {

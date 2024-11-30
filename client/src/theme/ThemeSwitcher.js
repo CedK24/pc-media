@@ -4,6 +4,7 @@ import PaletteIcon from '@mui/icons-material/Palette';
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import WaterDropIcon from '@mui/icons-material/WaterDrop';
 
 const ThemeSwitcher = ({ onThemeChange, currentTheme }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -25,6 +26,7 @@ const ThemeSwitcher = ({ onThemeChange, currentTheme }) => {
     { name: 'modern', label: 'Style Moderne', icon: <WbSunnyIcon /> },
     { name: 'dark', label: 'Mode Sombre', icon: <DarkModeIcon /> },
     { name: 'gaming', label: 'Style Gaming', icon: <SportsEsportsIcon /> },
+    { name: 'gradient', label: 'Style Gradient', icon: <WaterDropIcon /> },
   ];
 
   return (

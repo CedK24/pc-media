@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import modernTheme from './theme/themes/modern';
-import darkTheme from './theme/themes/dark';
-import gamingTheme from './theme/themes/gaming';
-import gradientTheme from './theme/themes/gradient';
+import { themes } from './theme/theme';
 import Layout from './components/Layout/Layout';
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -23,13 +20,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import CookiePolicy from './pages/CookiePolicy';
 import SalesConditions from './pages/SalesConditions';
 import PCBureauMultimedia from './pages/PCBureauMultimedia';
-
-const themes = {
-  modern: modernTheme,
-  dark: darkTheme,
-  gaming: gamingTheme,
-  gradient: gradientTheme,
-};
 
 // Gestionnaire ResizeObserver
 const useResizeObserverErrorHandler = () => {
