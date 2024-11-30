@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { IconButton, Menu, MenuItem } from '@mui/material';
+import { IconButton, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import PaletteIcon from '@mui/icons-material/Palette';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 
-const ThemeSwitcher = () => {
+const ThemeSwitcher = ({ onThemeChange, currentTheme }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
@@ -14,20 +17,28 @@ const ThemeSwitcher = () => {
   };
 
   const handleThemeSelect = (themeName) => {
-    console.log('Changing theme to:', themeName);
-    localStorage.setItem('preferred-theme', themeName);
-    console.log('Theme saved in localStorage:', localStorage.getItem('preferred-theme'));
-    window.location.reload();
+    onThemeChange(themeName);
     handleClose();
   };
+
+  const themes = [
+    { name: 'modern', label: 'Style Moderne', icon: <WbSunnyIcon /> },
+    { name: 'dark', label: 'Mode Sombre', icon: <DarkModeIcon /> },
+    { name: 'gaming', label: 'Style Gaming', icon: <SportsEsportsIcon /> },
+  ];
 
   return (
     <>
       <IconButton
-        color="inherit"
         onClick={handleClick}
         aria-label="change theme"
-        sx={{ ml: 1 }}
+        sx={{ 
+          ml: 1,
+          color: 'primary.main',
+          '&:hover': {
+            color: 'primary.dark',
+          },
+        }}
       >
         <PaletteIcon />
       </IconButton>
@@ -35,16 +46,37 @@ const ThemeSwitcher = () => {
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        PaperProps={{
+          elevation: 3,
+          sx: {
+            mt: 1.5,
+            minWidth: 180,
+            '& .MuiMenuItem-root': {
+              py: 1,
+            },
+          },
+        }}
       >
-        <MenuItem onClick={() => handleThemeSelect('modern')}>
-          Style Moderne
-        </MenuItem>
-        <MenuItem onClick={() => handleThemeSelect('dark')}>
-          Mode Sombre
-        </MenuItem>
-        <MenuItem onClick={() => handleThemeSelect('gaming')}>
-          Style Gaming
-        </MenuItem>
+        {themes.map((theme) => (
+          <MenuItem 
+            key={theme.name}
+            onClick={() => handleThemeSelect(theme.name)}
+            selected={currentTheme === theme.name}
+            sx={{
+              '&.Mui-selected': {
+                backgroundColor: 'primary.light',
+                '&:hover': {
+                  backgroundColor: 'primary.light',
+                },
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: currentTheme === theme.name ? 'primary.main' : 'inherit' }}>
+              {theme.icon}
+            </ListItemIcon>
+            {theme.label}
+          </MenuItem>
+        ))}
       </Menu>
     </>
   );

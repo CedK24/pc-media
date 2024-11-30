@@ -11,11 +11,11 @@ const featuredServices = [
   'reparation',
   'maintenance',
   'securite',
-  'reseaux',
-  'serveurs',
+  'reseau',
+  'stockage',
   'cloud',
   'performance',
-  'pc-bureau-multimedia'
+  'conseil'
 ];
 
 const Home = () => {
@@ -25,7 +25,6 @@ const Home = () => {
     .filter(service => featuredServices.includes(service.id))
     .map(service => ({
       ...service,
-      description: service.shortDescription,
       highlight: service.id === 'reparation'
     }));
 
@@ -155,8 +154,8 @@ const Home = () => {
                           component="ul" 
                           sx={{ pl: 2 }}
                         >
-                          {service.details.slice(0, 3).map((detail, index) => (
-                            <li key={index}>{detail}</li>
+                          {service.features.slice(0, 3).map((feature, index) => (
+                            <li key={index}>{feature}</li>
                           ))}
                         </Typography>
                       </Box>
@@ -197,50 +196,11 @@ const Home = () => {
         </Box>
 
         {/* Features Section */}
-        <Box sx={{ bgcolor: 'grey.50', py: 8 }}>
+        <Box sx={{ py: 8 }}>
           <Container maxWidth="lg">
-            <Typography variant="h3" component="h2" align="center" gutterBottom>
-              Pourquoi nous choisir ?
-            </Typography>
-            <Typography variant="h6" align="center" color="text.secondary" gutterBottom sx={{ mb: 6 }}>
-              Une expertise reconnue au service de votre satisfaction
-            </Typography>
-            <Grid container spacing={4}>
-              {[
-                {
-                  title: 'Expertise Technique',
-                  description: 'Une équipe de techniciens certifiés avec plus de 10 ans d\'expérience'
-                },
-                {
-                  title: 'Réactivité',
-                  description: 'Intervention rapide et efficace pour minimiser l\'impact sur votre activité'
-                },
-                {
-                  title: 'Transparence',
-                  description: 'Des tarifs clairs et des devis détaillés sans surprise'
-                },
-                {
-                  title: 'Satisfaction Client',
-                  description: 'Un suivi personnalisé et des solutions adaptées à vos besoins'
-                }
-              ].map((feature, index) => (
-                <Grid item xs={12} sm={6} md={3} key={index}>
-                  <Card sx={{ height: '100%', textAlign: 'center', p: 3 }}>
-                    <Typography variant="h5" component="h3" gutterBottom color="primary">
-                      {feature.title}
-                    </Typography>
-                    <Typography color="text.secondary">
-                      {feature.description}
-                    </Typography>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
+            <ElfsightReviews />
           </Container>
         </Box>
-
-        {/* Section Avis Elfsight */}
-        <ElfsightReviews />
       </Container>
     </Box>
   );

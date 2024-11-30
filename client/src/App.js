@@ -14,7 +14,6 @@ import Emergency from './pages/Emergency';
 import Appointment from './pages/Appointment';
 import FAQ from './pages/FAQ';
 import LegalNotice from './pages/LegalNotice';
-import PCBureauMultimedia from './pages/PCBureauMultimedia';
 import Configurateur from './pages/Configurateur';
 import ConfigurationDetail from './pages/ConfigurationDetail';
 import LegalMentions from './pages/LegalMentions';
@@ -29,68 +28,51 @@ const themes = {
   gaming: gamingTheme,
 };
 
-// Suppression des avertissements ResizeObserver
-const suppressResizeObserverErrors = () => {
-  const resizeObserverLoopErrRe = /^[^(ResizeObserver loop limit exceeded)]/;
-  const originalConsoleError = console.error;
-  console.error = (...args) => {
-    if (args.length > 0 && typeof args[0] === 'string' && resizeObserverLoopErrRe.test(args[0])) {
-      return;
-    }
-    originalConsoleError.apply(console, args);
-  };
-};
-
-function App() {
-  const [currentTheme, setCurrentTheme] = useState('modern');
-
+// Gestionnaire ResizeObserver
+const useResizeObserverErrorHandler = () => {
   useEffect(() => {
-    const savedTheme = localStorage.getItem('preferred-theme');
-    console.log('Current themes:', themes);
-    console.log('Saved theme:', savedTheme);
-    console.log('Available themes:', Object.keys(themes));
-    if (savedTheme && themes[savedTheme]) {
-      console.log('Setting theme to:', savedTheme);
-      setCurrentTheme(savedTheme);
-    }
-
-    // Suppression des avertissements ResizeObserver au montage du composant
-    suppressResizeObserverErrors();
-
-    // Configuration ResizeObserver
-    const resizeObserver = new ResizeObserver((entries) => {
-      // Utilisation de requestAnimationFrame pour limiter les mises à jour
-      window.requestAnimationFrame(() => {
-        if (!Array.isArray(entries) || !entries.length) {
-          return;
-        }
-      });
-    });
-
-    // Observer le corps du document
-    resizeObserver.observe(document.body);
-
-    // Gestionnaire d'erreur global pour ResizeObserver
-    const handleError = (event) => {
-      if (event.message === 'ResizeObserver loop completed with undelivered notifications.') {
-        event.stopImmediatePropagation();
+    const handler = (event) => {
+      if (event.message && event.message.includes('ResizeObserver')) {
+        event.stopPropagation();
+        event.preventDefault();
       }
     };
 
-    window.addEventListener('error', handleError);
+    window.addEventListener('error', handler);
+    window.addEventListener('unhandledrejection', handler);
 
     return () => {
-      resizeObserver.disconnect();
-      window.removeEventListener('error', handleError);
+      window.removeEventListener('error', handler);
+      window.removeEventListener('unhandledrejection', handler);
     };
   }, []);
+};
+
+function App() {
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    const savedTheme = localStorage.getItem('preferred-theme');
+    return savedTheme && themes[savedTheme] ? savedTheme : 'modern';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('preferred-theme', currentTheme);
+  }, [currentTheme]);
+
+  // Utilisation du gestionnaire ResizeObserver
+  useResizeObserverErrorHandler();
+
+  const handleThemeChange = (newTheme) => {
+    if (themes[newTheme]) {
+      setCurrentTheme(newTheme);
+    }
+  };
 
   return (
     <ThemeProvider theme={themes[currentTheme]}>
       <CssBaseline />
       <Router>
         <div className="App">
-          <Layout>
+          <Layout onThemeChange={handleThemeChange} currentTheme={currentTheme}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/services" element={<Services />} />
@@ -100,7 +82,6 @@ function App() {
               <Route path="/rendez-vous" element={<Appointment />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/legal" element={<LegalNotice />} />
-              <Route path="/pc-bureau-multimedia" element={<PCBureauMultimedia />} />
               <Route path="/configurateur" element={<Configurateur />} />
               <Route path="/configuration/:id" element={<ConfigurationDetail />} />
               <Route path="/mentions-legales" element={<LegalMentions />} />

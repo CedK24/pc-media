@@ -22,10 +22,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import EventIcon from '@mui/icons-material/Event';
 import EmailIcon from '@mui/icons-material/Email';
 import SpeedIcon from '@mui/icons-material/Speed';
-import PaletteIcon from '@mui/icons-material/Palette';
 import ThemeSwitcher from '../../theme/ThemeSwitcher';
 
-const Header = () => {
+const Header = ({ onThemeChange, currentTheme }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const handleDrawerToggle = () => {
@@ -51,113 +50,94 @@ const Header = () => {
             to={item.path} 
             key={item.text}
             onClick={handleDrawerToggle}
+            sx={{
+              color: item.isUrgent ? 'error.main' : 'inherit',
+              '&:hover': {
+                backgroundColor: item.isUrgent ? 'error.light' : 'action.hover',
+              },
+            }}
           >
-            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemIcon sx={{ color: item.isUrgent ? 'error.main' : 'inherit' }}>
+              {item.icon}
+            </ListItemIcon>
             <ListItemText primary={item.text} />
           </ListItem>
         ))}
-      </List>
-      <Divider />
-      <List>
+        <Divider sx={{ my: 2 }} />
         <ListItem>
-          <ListItemIcon>
-            <PaletteIcon />
-          </ListItemIcon>
-          <ListItemText primary="Thème" />
-          <ThemeSwitcher />
+          <ThemeSwitcher onThemeChange={onThemeChange} currentTheme={currentTheme} />
         </ListItem>
       </List>
     </Box>
   );
 
   return (
-    <AppBar position="sticky" sx={{ bgcolor: 'primary.main' }}>
+    <AppBar position="sticky" elevation={0} sx={{ bgcolor: 'background.paper' }}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-          {/* Logo et Titre */}
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { md: 'none' } }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-              <Typography
-                variant="h6"
-                noWrap
+        <Toolbar disableGutters>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Typography
+            variant="h6"
+            noWrap
+            component={Link}
+            to="/"
+            sx={{
+              mr: 2,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'primary.main',
+              textDecoration: 'none',
+              flexGrow: { xs: 1, sm: 0 },
+            }}
+          >
+            PC MEDIA
+          </Typography>
+
+          <Box sx={{ display: { xs: 'none', sm: 'flex' }, flexGrow: 1, gap: 2 }}>
+            {menuItems.map((item) => (
+              <Button
+                key={item.text}
+                component={Link}
+                to={item.path}
+                startIcon={item.icon}
                 sx={{
-                  fontWeight: 700,
-                  letterSpacing: '.1rem',
-                  color: 'white',
-                  textDecoration: 'none',
-                  fontSize: { xs: '1.2rem', md: '1.5rem' },
+                  color: item.isUrgent ? 'error.main' : 'text.primary',
+                  '&:hover': {
+                    bgcolor: item.isUrgent ? 'error.light' : 'action.hover',
+                  },
                 }}
               >
-                PC-MÉDIA@
-              </Typography>
-            </Link>
+                {item.text}
+              </Button>
+            ))}
           </Box>
 
-          {/* Navigation Desktop */}
-          <Box sx={{ 
-            display: { xs: 'none', md: 'flex' }, 
-            gap: 2,
-            alignItems: 'center',
-            flexGrow: 1,
-            justifyContent: 'flex-end',
-            ml: 4
-          }}>
-            {menuItems.map((item) => (
-              item.isUrgent ? (
-                <Button
-                  key={item.text}
-                  component={Link}
-                  to={item.path}
-                  variant="contained"
-                  color="error"
-                  startIcon={item.icon}
-                  sx={{
-                    fontWeight: 600,
-                    '&:hover': {
-                      bgcolor: 'error.dark',
-                    },
-                  }}
-                >
-                  {item.text}
-                </Button>
-              ) : (
-                <Button
-                  key={item.text}
-                  component={Link}
-                  to={item.path}
-                  color="inherit"
-                  startIcon={item.icon}
-                  sx={{ fontWeight: 500 }}
-                >
-                  {item.text}
-                </Button>
-              )
-            ))}
-            <ThemeSwitcher />
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <ThemeSwitcher onThemeChange={onThemeChange} currentTheme={currentTheme} />
           </Box>
         </Toolbar>
       </Container>
 
-      {/* Menu Mobile */}
       <Drawer
         variant="temporary"
         anchor="left"
         open={mobileOpen}
         onClose={handleDrawerToggle}
         ModalProps={{
-          keepMounted: true, // Better open performance on mobile.
+          keepMounted: true,
         }}
         sx={{
-          display: { xs: 'block', md: 'none' },
+          display: { xs: 'block', sm: 'none' },
           '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 250 },
         }}
       >
