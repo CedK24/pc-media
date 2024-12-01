@@ -61,7 +61,7 @@ const modernTheme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         body: {
-          background: 'linear-gradient(90deg, #00c3ff 0%, #ffff1c 100%)',
+          background: 'linear-gradient(90deg, #56ccf2 0%, #2f80ed 100%)',
           backgroundAttachment: 'fixed',
           minHeight: '100vh',
         },
