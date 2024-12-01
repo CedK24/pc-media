@@ -3,13 +3,16 @@
   "rootDirectory": "OneSite/client",
   "builds": [
     {
-      "src": "build/**",
-      "use": "@vercel/static"
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build"
+      }
     }
   ],
   "routes": [
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+    { "src": "/[^.]+", "dest": "/", "status": 200 }
   ],
   "github": {
     "silent": true,
