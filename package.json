@@ -1,0 +1,32 @@
+{
+  "name": "pc-media-support",
+  "version": "1.0.0",
+  "description": "Site web de support et réparation informatique",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install-client": "cd client && npm install",
+    "install-server": "npm install",
+    "install": "npm run install-server && npm run install-client",
+    "build": "cd client && npm run build"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "firebase-admin": "^11.10.1",
+    "stripe": "^13.5.0",
+    "twilio": "^4.16.0",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "concurrently": "^8.2.1"
+  }
+}
