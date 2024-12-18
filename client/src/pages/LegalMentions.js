@@ -30,17 +30,17 @@ const LegalMentions = () => {
         <Typography paragraph>
           Raison sociale : PC-Media
           <br />
-          Forme juridique : [Forme juridique]
+          Forme juridique : Entreprise individuelle
           <br />
-          Siège social : [Adresse complète]
+          Siège social : 1 bis rue des pinsons, 24660 SANILHAC
           <br />
-          SIRET : [Numéro SIRET]
+          SIRET : 803 977 628 000 020
           <br />
-          Capital social : [Montant]
+          Capital social : 1000€
           <br />
-          Téléphone : [Numéro]
+          Téléphone : +33 7 49 29 21 10
           <br />
-          Email : [Email]
+          Email : pcmedia24@gmail.com
         </Typography>
 
         <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, mt: 4 }}>
